@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Certificates — Boyan Antonov</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:#070b14;
+      --surface:#0f1829;
+      --border:#1a2640;
+      --blue:#3b82f6;
+      --text:#e2eaf5;
+      --muted:#5a7399;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+    }
+
+    .wrap { max-width: 1000px; margin: auto; padding: 30px; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .filters {
+      margin: 25px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue);
+    }
+
+    .issuer-logo {
+      width: 45px;
+      height: 45px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b1120;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .issuer-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 6px;
+    }
+
+    .profile {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .profile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hidden { display:none; }
+  </style>
+
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="profile">
+    <img src="assets/images/photo.jpg" alt="Boyan">
+  </div>
+
+  <h1>Boyan Antonov</h1>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="cloud">Cloud</button>
+    <button class="filter-btn" data-filter="devops">DevOps</button>
+    <button class="filter-btn" data-filter="networking">Networking</button>
+    <button class="filter-btn" data-filter="programming">Programming</button>
+    <button class="filter-btn" data-filter="finance">Finance</button>
+  </div>
+
+  <div class="grid">
+
+```
+<a class="card" data-category="cloud">
+  <div class="issuer-logo"><img src="assets/logos/aws.png"></div>
+  <h3>AWS Cloud Practitioner</h3>
+  <p>Amazon Web Services</p>
+</a>
+
+<a class="card" data-category="cloud">
+  <div class="issuer-logo"><img src="assets/logos/gcp.png"></div>
+  <h3>Google Cloud Fundamentals</h3>
+  <p>Google Cloud</p>
+</a>
+
+<a class="card" data-category="networking">
+  <div class="issuer-logo"><img src="assets/logos/cisco.png"></div>
+  <h3>Networking Basics</h3>
+  <p>Cisco</p>
+</a>
+
+<a class="card" data-category="devops">
+  <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
+  <h3>DevOps & CI/CD</h3>
+  <p>SoftUni</p>
+</a>
+
+<a class="card" data-category="programming">
+  <div class="issuer-logo"><img src="assets/logos/java.png"></div>
+  <h3>Java OOP</h3>
+  <p>SoftUni</p>
+</a>
+
+<a class="card" data-category="finance">
+  <div class="issuer-logo"><img src="assets/logos/finance.png"></div>
+  <h3>Investments</h3>
+  <p>Finance Academy</p>
+</a>
+```
+
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"))
+    btn.classList.add("active")
+    let f=btn.dataset.filter
+    document.querySelectorAll(".card").forEach(c=>{
+      c.classList.toggle("hidden",f!="all" && c.dataset.category!=f)
+    })
+  }
+})
+</script>
+
+</body>
+</html>
