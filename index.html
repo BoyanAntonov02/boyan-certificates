@@ -47,11 +47,18 @@
       text-decoration: none;
       color: inherit;
       transition: .2s;
+      display: block;
     }
 
     .card:hover {
       transform: translateY(-5px);
       border-color: var(--blue);
+    }
+
+    .card::after {
+      content: "↗";
+      float: right;
+      color: var(--muted);
     }
 
     .issuer-logo {
@@ -101,37 +108,37 @@
 
   <div class="grid">
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/aws.png"></div>
       <h3>AWS Cloud Practitioner</h3>
       <p>Amazon Web Services</p>
     </a>
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/gcp.png"></div>
       <h3>Google Cloud Fundamentals</h3>
       <p>Google Cloud</p>
     </a>
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/cisco.png"></div>
       <h3>Networking Basics</h3>
       <p>Cisco</p>
     </a>
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
       <h3>DevOps & CI/CD</h3>
       <p>SoftUni</p>
     </a>
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/java.png"></div>
       <h3>Java OOP</h3>
       <p>SoftUni</p>
     </a>
 
-    <a class="card">
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
       <div class="issuer-logo"><img src="assets/logos/finance.png"></div>
       <h3>Investments</h3>
       <p>Finance Academy</p>
