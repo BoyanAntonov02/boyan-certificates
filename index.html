@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -31,28 +30,7 @@
     h1 {
       font-family: 'Lora', serif;
       font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .filters {
-      margin: 25px 0;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: none;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .filter-btn.active {
-      border-color: var(--blue);
-      color: var(--blue);
+      margin-bottom: 20px;
     }
 
     .grid {
@@ -108,8 +86,6 @@
       height: 100%;
       object-fit: cover;
     }
-
-    .hidden { display:none; }
   </style>
 
 </head>
@@ -123,71 +99,47 @@
 
   <h1>Boyan Antonov</h1>
 
-  <div class="filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="cloud">Cloud</button>
-    <button class="filter-btn" data-filter="devops">DevOps</button>
-    <button class="filter-btn" data-filter="networking">Networking</button>
-    <button class="filter-btn" data-filter="programming">Programming</button>
-    <button class="filter-btn" data-filter="finance">Finance</button>
-  </div>
-
   <div class="grid">
 
-```
-<a class="card" data-category="cloud">
-  <div class="issuer-logo"><img src="assets/logos/aws.png"></div>
-  <h3>AWS Cloud Practitioner</h3>
-  <p>Amazon Web Services</p>
-</a>
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/aws.png"></div>
+      <h3>AWS Cloud Practitioner</h3>
+      <p>Amazon Web Services</p>
+    </a>
 
-<a class="card" data-category="cloud">
-  <div class="issuer-logo"><img src="assets/logos/gcp.png"></div>
-  <h3>Google Cloud Fundamentals</h3>
-  <p>Google Cloud</p>
-</a>
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/gcp.png"></div>
+      <h3>Google Cloud Fundamentals</h3>
+      <p>Google Cloud</p>
+    </a>
 
-<a class="card" data-category="networking">
-  <div class="issuer-logo"><img src="assets/logos/cisco.png"></div>
-  <h3>Networking Basics</h3>
-  <p>Cisco</p>
-</a>
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/cisco.png"></div>
+      <h3>Networking Basics</h3>
+      <p>Cisco</p>
+    </a>
 
-<a class="card" data-category="devops">
-  <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
-  <h3>DevOps & CI/CD</h3>
-  <p>SoftUni</p>
-</a>
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
+      <h3>DevOps & CI/CD</h3>
+      <p>SoftUni</p>
+    </a>
 
-<a class="card" data-category="programming">
-  <div class="issuer-logo"><img src="assets/logos/java.png"></div>
-  <h3>Java OOP</h3>
-  <p>SoftUni</p>
-</a>
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/java.png"></div>
+      <h3>Java OOP</h3>
+      <p>SoftUni</p>
+    </a>
 
-<a class="card" data-category="finance">
-  <div class="issuer-logo"><img src="assets/logos/finance.png"></div>
-  <h3>Investments</h3>
-  <p>Finance Academy</p>
-</a>
-```
+    <a class="card">
+      <div class="issuer-logo"><img src="assets/logos/finance.png"></div>
+      <h3>Investments</h3>
+      <p>Finance Academy</p>
+    </a>
 
   </div>
 
 </div>
-
-<script>
-document.querySelectorAll(".filter-btn").forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"))
-    btn.classList.add("active")
-    let f=btn.dataset.filter
-    document.querySelectorAll(".card").forEach(c=>{
-      c.classList.toggle("hidden",f!="all" && c.dataset.category!=f)
-    })
-  }
-})
-</script>
 
 </body>
 </html>
