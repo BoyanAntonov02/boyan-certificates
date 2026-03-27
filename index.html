@@ -1,37 +1,226 @@
-<div class="grid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificates - Boyan Antonov</title>
 
-  <a class="card" href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066" target="_blank" rel="noopener noreferrer">
-    <div class="issuer-logo"><img src="assets/logos/gcp.png"></div>
-    <h3>Google Cloud Certifications</h3>
-    <p>View full profile</p>
-  </a>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 
-  <a class="card" href="https://www.netacad.com/certificates?issuanceId=60a26abe-b91b-42b3-9146-d2b05dcc9beb" target="_blank" rel="noopener noreferrer">
-    <div class="issuer-logo"><img src="assets/logos/cisco.png"></div>
-    <h3>Networking Basics</h3>
-    <p>Cisco</p>
-  </a>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <a class="card" href="https://softuni.bg/certificates/details/209300/56b60dfd" target="_blank" rel="noopener noreferrer">
-    <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
-    <h3>DevOps & CI/CD</h3>
-    <p>SoftUni</p>
-  </a>
+:root {
+  --bg:#070b14;
+  --surface:#0f1829;
+  --border:#1a2640;
+  --blue:#3b82f6;
+  --text:#e2eaf5;
+  --muted:#5a7399;
+}
 
-  <a class="card" href="" target="_blank" rel="noopener noreferrer">
-    <div class="issuer-logo"><img src="assets/logos/softuni.png"></div>
-    <h3>Java OOP</h3>
-    <p>SoftUni</p>
-  </a>
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+}
 
-  <a class="card" href="https://financeacademy.bg/certificates/details/3128/febb4bd8" target="_blank" rel="noopener noreferrer">
-    <div class="issuer-logo"><img src="assets/logos/finance.png"></div>
-    <h3>Investments</h3>
-    <p>Finance Academy</p>
-  </a>
+/* Layout */
+.wrap {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-  <a class="card more" href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066" target="_blank" rel="noopener noreferrer">
-    + View All Certifications
-  </a>
+/* Header */
+.profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-family: 'Lora', serif;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.25s ease;
+  display: block;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--blue);
+}
+
+/* Arrow */
+.card::after {
+  content: "↗";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Logo */
+.issuer-logo {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1120;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.issuer-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* AWS fix */
+.issuer-logo.aws {
+  background: #ffffff;
+}
+
+/* Text */
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Special card */
+.card.more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-style: dashed;
+  color: var(--blue);
+}
+
+/* Responsive */
+@media (max-width:600px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="profile">
+    <img src="assets/images/photo.jpg" alt="Boyan">
+  </div>
+
+  <h1>Certificates</h1>
+
+  <div class="grid">
+
+    <!-- GOOGLE CLOUD -->
+    <a class="card" href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo">
+        <img src="assets/logos/gcp.png">
+      </div>
+      <h3>Google Cloud Certifications</h3>
+      <p>View full profile</p>
+    </a>
+
+    <!-- CISCO -->
+    <a class="card" href="https://www.netacad.com/certificates?issuanceId=60a26abe-b91b-42b3-9146-d2b05dcc9beb" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo">
+        <img src="assets/logos/cisco.png">
+      </div>
+      <h3>Networking Basics</h3>
+      <p>Cisco</p>
+    </a>
+
+    <!-- DEVOPS -->
+    <a class="card" href="https://softuni.bg/certificates/details/209300/56b60dfd" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo">
+        <img src="assets/logos/softuni.png">
+      </div>
+      <h3>DevOps & CI/CD</h3>
+      <p>SoftUni</p>
+    </a>
+
+    <!-- JAVA -->
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo">
+        <img src="assets/logos/softuni.png">
+      </div>
+      <h3>Java OOP</h3>
+      <p>SoftUni</p>
+    </a>
+
+    <!-- FINANCE -->
+    <a class="card" href="https://financeacademy.bg/certificates/details/3128/febb4bd8" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo">
+        <img src="assets/logos/finance.png">
+      </div>
+      <h3>Investments</h3>
+      <p>Finance Academy</p>
+    </a>
+
+    <!-- AWS (ако добавиш) -->
+    <a class="card" href="" target="_blank" rel="noopener noreferrer">
+      <div class="issuer-logo aws">
+        <img src="assets/logos/aws.png">
+      </div>
+      <h3>AWS Cloud Practitioner</h3>
+      <p>Amazon Web Services</p>
+    </a>
+
+    <!-- VIEW ALL -->
+    <a class="card more" href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066" target="_blank" rel="noopener noreferrer">
+      + View All Certifications
+    </a>
+
+  </div>
 
 </div>
+
+</body>
+</html>
