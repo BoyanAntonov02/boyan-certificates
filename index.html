@@ -3,219 +3,802 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificates - Boyan Antonov</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+<title>Certificates · Boyan Antonov</title>
+<meta name="description" content="Certifications and credentials of Boyan Antonov — cloud, networking, DevOps and more.">
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =========================================================
+   Dark Apple theme — system font, hairline borders,
+   soft glow on hover, one restrained system-blue accent.
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:#070b14;
-  --surface:#0f1829;
-  --border:#1a2640;
-  --blue:#3b82f6;
-  --text:#e2eaf5;
-  --muted:#5a7399;
+  --bg: #000000;
+  --surface: #1c1c1e;
+  --surface-hover: #242426;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --text: #f5f5f7;
+  --muted: #86868b;
+  --muted-2: #6e6e73;
+  --accent: #0a84ff;          /* Apple system blue (dark) */
+  --accent-soft: rgba(10, 132, 255, 0.16);
+  --radius-card: 18px;
+  --radius-pill: 980px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Sora', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  min-height: 100vh;
 }
 
-/* Layout */
+/* soft radial spotlight behind the header — very subtle */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(60% 45% at 50% -5%, rgba(10,132,255,0.10), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .wrap {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
 }
 
-/* Header */
+/* ---------------- Header ---------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
 .profile {
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-
-.profile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.profile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 h1 {
-  font-family: 'Lora', serif;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
-  gap: 20px;
+.subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 400;
 }
 
-/* Card */
-.card {
+/* contact icons */
+.contact { display: flex; gap: 10px; margin-top: 20px; }
+.contact a, .contact button {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+              background 0.2s var(--ease), transform 0.15s var(--ease);
+}
+.contact a:hover, .contact button:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+.contact a:focus-visible, .contact button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.contact svg { width: 19px; height: 19px; fill: currentColor; }
+
+/* revealed email address */
+.email-reveal {
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.email-reveal b { color: var(--text); font-weight: 500; }
+.email-reveal .copied { color: var(--accent); margin-left: 8px; font-size: 0.82rem; }
+
+/* ---------------- Toolbar ---------------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* Filter pills */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+              color 0.2s var(--ease), transform 0.15s var(--ease);
+}
+.pill:hover { background: var(--surface-hover); border-color: var(--border-strong); }
+.pill:active { transform: scale(0.97); }
+.pill[aria-pressed="true"] {
+  background: var(--text);
+  color: #000;
+  border-color: var(--text);
+}
+.pill .count {
+  opacity: 0.55;
+  margin-left: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Segmented sort control (iOS-style) */
+.sort {
+  display: inline-flex;
   background: var(--surface);
   border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: 14px;
+  border-radius: 12px;
+  padding: 3px;
+  gap: 2px;
+}
+.sort-label {
+  align-self: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 0 6px 0 2px;
+}
+.seg {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.seg:hover { color: var(--text); }
+.seg[aria-pressed="true"] {
+  background: var(--surface-hover);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* ---------------- Grid & cards ---------------- */
+.meta-line {
+  color: var(--muted-2);
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 18px;
+}
+
+/* Year separator (only shown when sorting by Year) — spans full row */
+.year-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 14px 2px 0;
+}
+.year-head:first-child { margin-top: 0; }
+.year-head .yr {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.year-head .n { font-size: 0.8rem; color: var(--muted-2); }
+.year-head .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  align-self: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 22px;
+  border-radius: var(--radius-card);
   text-decoration: none;
   color: inherit;
-  transition: 0.25s ease;
-  display: block;
-  position: relative;
+  min-height: 172px;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-
 .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--blue);
+  transform: translateY(-4px);
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55), 0 0 0 1px var(--accent-soft);
+}
+.card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
-/* Arrow */
-.card::after {
-  content: "↗";
+/* verification tag, top-right */
+.card .tag {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  font-size: 14px;
+  top: 18px;
+  right: 18px;
+  font-size: 0.72rem;
+  font-weight: 500;
   color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.25s var(--ease);
 }
+.card:hover .tag { color: var(--accent); }
+.card--fallback .tag { color: var(--muted-2); }
+.card--fallback:hover .tag { color: var(--muted); }
 
-/* Logo */
+/* issuer logo */
 .issuer-logo {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  margin-bottom: 14px;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0b1120;
-  border-radius: 10px;
+  background: #0b0b0c;
+  border: 1px solid var(--border);
+  border-radius: 13px;
   overflow: hidden;
-}
-
-.issuer-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* AWS fix */
-.issuer-logo.aws {
-  background: #ffffff;
-}
-
-/* Text */
-.card h3 {
+  font-weight: 600;
+  color: var(--muted);
   font-size: 1rem;
+}
+.issuer-logo img { width: 100%; height: 100%; object-fit: contain; }
+.issuer-logo.light { background: #ffffff; }  /* for logos that need a white bg (AWS etc.) */
+
+.card h3 {
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   margin-bottom: 6px;
 }
+.card .issuer { color: var(--muted); font-size: 0.9rem; }
 
-.card p {
-  font-size: 0.85rem;
+.card .foot {
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--muted-2);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.card .foot .dot { opacity: 0.5; }
+
+/* hidden by filter */
+.card.is-hidden { display: none; }
+
+/* empty state */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 80px 20px;
+  display: none;
+}
+.empty.show { display: block; }
+.empty .big { font-size: 1.15rem; color: var(--text); margin-bottom: 6px; }
+
+/* footer */
+.page-foot {
+  margin-top: 64px;
+  text-align: center;
+  color: var(--muted-2);
+  font-size: 0.82rem;
+}
+
+/* ---------------- Projects section ---------------- */
+.section-title {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 72px 0 8px;
+}
+.section-sub { color: var(--muted); font-size: 0.98rem; margin-bottom: 24px; }
+
+.card--repo { min-height: 150px; }
+.repo-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-bottom: 4px;
+  /* clamp long descriptions to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.lang { display: inline-flex; align-items: center; gap: 6px; }
+.lang-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.badge {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 1px 9px;
+  font-size: 0.72rem;
   color: var(--muted);
 }
+.card--private .tag { color: var(--muted-2); }
 
-/* Special card */
-.card.more {
-  display: flex;
+.gh-link {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  border-style: dashed;
-  color: var(--blue);
+  gap: 8px;
+  margin-top: 26px;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.gh-link:hover { background: var(--surface-hover); border-color: var(--border-strong); }
+
+@media (max-width: 640px) {
+  .wrap { padding: 48px 18px 72px; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .sort { align-self: flex-start; }
 }
 
-/* Responsive */
-@media (max-width:600px) {
-  h1 {
-    font-size: 2rem;
-  }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .card:hover { transform: none; }
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
-  <div class="profile">
-    <img src="assets/images/photo.jpg" alt="Boyan">
+  <!-- ---------------- Header ---------------- -->
+  <header class="header">
+    <div class="profile">
+      <!-- Falls back to initials "BA" if the image is missing -->
+      <img src="assets/images/photo.jpg" alt="Boyan Antonov"
+           onerror="this.remove(); this.parentNode.textContent='BA';">
+    </div>
+    <h1>Boyan Antonov</h1>
+    <p class="subtitle">Certifications &amp; projects</p>
+
+    <div class="contact">
+      <a href="https://github.com/BoyanAntonov02" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/boyan-antonov/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+      </a>
+      <button type="button" class="contact-email" id="emailBtn" aria-label="Show email" title="Show email" data-email="boyan.antonov02@gmail.com">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </button>
+    </div>
+
+    <p class="email-reveal" id="emailReveal" hidden></p>
+  </header>
+
+  <!-- ---------------- Toolbar ---------------- -->
+  <div class="toolbar">
+    <div class="filters" id="filters" role="group" aria-label="Filter by category">
+      <!-- category pills are generated from the cards -->
+    </div>
+
+    <div class="sort" role="group" aria-label="Sort certificates">
+      <span class="sort-label">Sort</span>
+      <button class="seg" data-sort="year"   aria-pressed="true">Year</button>
+      <button class="seg" data-sort="issuer" aria-pressed="false">Issuer</button>
+      <button class="seg" data-sort="name"   aria-pressed="false">Name</button>
+    </div>
   </div>
 
-  <h1>Certificates - Boyan Antonov</h1>
+  <p class="meta-line" id="metaLine"></p>
 
-  <div class="grid">
+  <!-- ---------------- Grid ----------------
+       To add a certificate, copy one <a.card> block and set:
+         data-category  cloud | network | devops | programming | finance | pm | ...
+         data-issuer    display name of the issuer
+         data-year      YYYY  (used for sorting; edit these to the real years)
+         data-title     the credential name (used for name sort)
+       Real credential link  -> class="card"           (shows "Verify ↗")
+       No link yet / issuer   -> add class "card--fallback" and point href
+                                 at the issuer site     (shows "Issuer site ↗")
+  -->
+  <div class="grid" id="grid">
+
+    <!-- CYFRIN — BLOCKCHAIN BASICS -->
+    <a class="card" data-category="blockchain" data-issuer="Cyfrin" data-year="2025" data-title="Blockchain Basics"
+       href="https://profiles.cyfrin.io/u/boyanantonov02/certificates/blockchain-basics"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/cyfrin.png" alt=""
+           onerror="this.remove(); this.parentNode.textContent='C';"></div>
+      <h3>Blockchain Basics</h3>
+      <p class="issuer">Cyfrin</p>
+      <div class="foot"><span>Blockchain</span><span class="dot">·</span><span>2025</span></div>
+    </a>
 
     <!-- GOOGLE CLOUD -->
-    <a class="card" href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo">
-        <img src="assets/logos/gcp.png">
-      </div>
+    <a class="card" data-category="cloud" data-issuer="Google Cloud" data-year="2025" data-title="Google Cloud Certifications"
+       href="https://www.skills.google/public_profiles/77b90004-58f4-402c-8abb-16d0e7e39066"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo light"><img src="assets/logos/gcp.png" alt=""
+           onerror="this.remove(); this.parentNode.textContent='G';"></div>
       <h3>Google Cloud Certifications</h3>
-      <p>View full profile</p>
+      <p class="issuer">Google Cloud</p>
+      <div class="foot"><span>Cloud</span><span class="dot">·</span><span>2025</span></div>
     </a>
 
     <!-- CISCO -->
-    <a class="card" href="https://www.netacad.com/certificates?issuanceId=60a26abe-b91b-42b3-9146-d2b05dcc9beb" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo">
-        <img src="assets/logos/cisco.png">
-      </div>
+    <a class="card" data-category="network" data-issuer="Cisco" data-year="2023" data-title="Networking Basics"
+       href="https://www.netacad.com/certificates?issuanceId=60a26abe-b91b-42b3-9146-d2b05dcc9beb"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/cisco.png" alt=""></div>
       <h3>Networking Basics</h3>
-      <p>Cisco</p>
+      <p class="issuer">Cisco</p>
+      <div class="foot"><span>Network</span><span class="dot">·</span><span>2023</span></div>
     </a>
 
-    <!-- DEVOPS -->
-    <a class="card" href="https://softuni.bg/certificates/details/209300/56b60dfd" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo">
-        <img src="assets/logos/softuni.png">
-      </div>
-      <h3>DevOps & CI/CD</h3>
-      <p>SoftUni</p>
+    <!-- SPRING DATA -->
+    <a class="card" data-category="programming" data-issuer="SoftUni" data-year="2024" data-title="Spring Data"
+       href="https://softuni.bg/certificates/details/209300/56b60dfd"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/softuni.png" alt=""></div>
+      <h3>Spring Data</h3>
+      <p class="issuer">SoftUni</p>
+      <div class="foot"><span>Programming</span><span class="dot">·</span><span>2024</span></div>
     </a>
 
-    <!-- JAVA -->
-    <a class="card" href="" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo">
-        <img src="assets/logos/softuni.png">
-      </div>
+    <!-- SOFTWARE ENGINEERING & DEVOPS -->
+    <a class="card" data-category="devops" data-issuer="SoftUni" data-year="2024" data-title="Software Engineering &amp; DevOps"
+       href="https://softuni.bg/certificates/details/229466/cbbe13ed"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/softuni.png" alt=""></div>
+      <h3>Software Engineering &amp; DevOps</h3>
+      <p class="issuer">SoftUni</p>
+      <div class="foot"><span>DevOps</span><span class="dot">·</span><span>2024</span></div>
+    </a>
+
+    <!-- MYSQL -->
+    <a class="card" data-category="database" data-issuer="SoftUni" data-year="2024" data-title="MySQL"
+       href="https://softuni.bg/certificates/details/202720/dd302327"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/softuni.png" alt=""></div>
+      <h3>MySQL</h3>
+      <p class="issuer">SoftUni</p>
+      <div class="foot"><span>Databases</span><span class="dot">·</span><span>2024</span></div>
+    </a>
+
+    <!-- CONTAINERS AND CLOUD -->
+    <a class="card" data-category="cloud" data-issuer="SoftUni" data-year="2024" data-title="Containers and Cloud"
+       href="https://softuni.bg/certificates/details/232856/a3209e28"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/softuni.png" alt=""></div>
+      <h3>Containers and Cloud</h3>
+      <p class="issuer">SoftUni</p>
+      <div class="foot"><span>Cloud</span><span class="dot">·</span><span>2024</span></div>
+    </a>
+
+    <!-- JAVA OOP -->
+    <a class="card" data-category="programming" data-issuer="SoftUni" data-year="2023" data-title="Java OOP"
+       href="https://softuni.bg/certificates/details/195740/9e1bef49"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/softuni.png" alt=""></div>
       <h3>Java OOP</h3>
-      <p>SoftUni</p>
+      <p class="issuer">SoftUni</p>
+      <div class="foot"><span>Programming</span><span class="dot">·</span><span>2023</span></div>
     </a>
 
     <!-- FINANCE -->
-    <a class="card" href="https://financeacademy.bg/certificates/details/3128/febb4bd8" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo">
-        <img src="assets/logos/finance.png">
-      </div>
-      <h3>Investments</h3>
-      <p>Finance Academy</p>
+    <a class="card" data-category="finance" data-issuer="Finance Academy" data-year="2023" data-title="Investments &amp; Additional Income"
+       href="https://financeacademy.bg/certificates/details/3128/febb4bd8"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Verify ↗</span>
+      <div class="issuer-logo"><img src="assets/logos/finance.png" alt=""></div>
+      <h3>Investments &amp; Additional Income</h3>
+      <p class="issuer">Finance Academy</p>
+      <div class="foot"><span>Finance</span><span class="dot">·</span><span>2023</span></div>
     </a>
 
-    <!-- AWS  -->
-    <a class="card" href="" target="_blank" rel="noopener noreferrer">
-      <div class="issuer-logo aws">
-        <img src="assets/logos/aws.png">
-      </div>
+    <!-- AWS (no online verify link — opens the certificate image; put the PNG at assets/certs/aws-cloud-practitioner.png) -->
+    <a class="card" data-category="cloud" data-issuer="Amazon Web Services" data-year="2024" data-title="AWS Cloud Practitioner"
+       href="assets/certs/aws-cloud-practitioner.png" target="_blank" rel="noopener noreferrer">
+      <span class="tag">View ↗</span>
+      <div class="issuer-logo light"><img src="assets/logos/aws.png" alt=""
+           onerror="this.remove(); this.parentNode.textContent='A';"></div>
       <h3>AWS Cloud Practitioner</h3>
-      <p>Amazon Web Services</p>
+      <p class="issuer">Amazon Web Services</p>
+      <div class="foot"><span>Cloud</span><span class="dot">·</span><span>2024</span></div>
     </a>
 
   </div>
 
+  <!-- empty state -->
+  <div class="empty" id="empty">
+    <div class="big">No certificates in this category yet</div>
+    <div>Pick another filter above.</div>
+  </div>
+
+  <!-- ---------------- Projects ----------------
+       Replace YOUR-GITHUB below with your real GitHub username.
+       Language-dot colours follow GitHub's palette.
+  -->
+  <h2 class="section-title">Projects</h2>
+  <p class="section-sub">A few builds I'm proud of.</p>
+
+  <div class="grid">
+
+    <!-- StatusBoard -->
+    <a class="card card--repo" href="https://github.com/BoyanAntonov02/StatusBoard"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Repo ↗</span>
+      <h3>StatusBoard</h3>
+      <p class="repo-desc">End-to-end DevOps project: a Python web app on Kubernetes with automated CI/CD (GitHub Actions), IaC (Terraform, Ansible), GitOps (ArgoCD) and full monitoring (Prometheus, Grafana, Loki).</p>
+      <div class="foot">
+        <span class="lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+        <span class="dot">·</span><span class="badge">Public</span>
+        <span class="dot">·</span><span>Updated Aug 2025</span>
+      </div>
+    </a>
+
+    <!-- devops-labs -->
+    <a class="card card--repo" href="https://github.com/BoyanAntonov02/devops-labs"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Repo ↗</span>
+      <h3>devops-labs</h3>
+      <p class="repo-desc">Hands-on DevOps lab work — infrastructure, scripting and tooling experiments across the stack.</p>
+      <div class="foot">
+        <span class="lang"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+        <span class="dot">·</span><span class="badge">Public</span>
+        <span class="dot">·</span><span>Updated recently</span>
+      </div>
+    </a>
+
+    <!-- university-projects -->
+    <a class="card card--repo" href="https://github.com/BoyanAntonov02/university-projects"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Repo ↗</span>
+      <h3>university-projects</h3>
+      <p class="repo-desc">A curated collection of university coursework and SoftUni projects — Java, web development, SQL, OOP, data structures and problem solving.</p>
+      <div class="foot">
+        <span class="lang"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+        <span class="dot">·</span><span class="badge">Public</span>
+        <span class="dot">·</span><span>Updated recently</span>
+      </div>
+    </a>
+
+    <!-- travel-budget-planner -->
+    <a class="card card--repo" href="https://github.com/BoyanAntonov02/travel-budget-planner"
+       target="_blank" rel="noopener noreferrer">
+      <span class="tag">Repo ↗</span>
+      <h3>travel-budget-planner</h3>
+      <p class="repo-desc">A web app that helps users plan and manage travel budgets by tracking expenses and generating detailed reports.</p>
+      <div class="foot">
+        <span class="lang"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+        <span class="dot">·</span><span class="badge">Public</span>
+        <span class="dot">·</span><span>Updated Aug 2024</span>
+      </div>
+    </a>
+
+  </div>
+
+  <a class="gh-link" href="https://github.com/BoyanAntonov02" target="_blank" rel="noopener noreferrer">
+    View all on GitHub ↗
+  </a>
+
+  <footer class="page-foot">© <span id="year"></span> Boyan Antonov</footer>
+
 </div>
+
+<script>
+(function () {
+  const grid    = document.getElementById('grid');
+  const filters = document.getElementById('filters');
+  const metaLine= document.getElementById('metaLine');
+  const empty   = document.getElementById('empty');
+  const cards   = Array.from(grid.querySelectorAll('.card'));
+  const segs    = Array.from(document.querySelectorAll('.seg'));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Pretty labels for category keys
+  const LABELS = {
+    all: 'All', cloud: 'Cloud', network: 'Network', devops: 'DevOps',
+    programming: 'Programming', finance: 'Finance', pm: 'Project Management',
+    security: 'Security', data: 'Data', linux: 'Linux',
+    database: 'Databases', blockchain: 'Blockchain'
+  };
+  const label = k => LABELS[k] || (k.charAt(0).toUpperCase() + k.slice(1));
+
+  let activeCat  = 'all';
+  let activeSort = 'year';
+
+  // ---- Build category pills from the cards (auto-maintaining) ----
+  const counts = { all: cards.length };
+  cards.forEach(c => {
+    const cat = c.dataset.category || 'other';
+    counts[cat] = (counts[cat] || 0) + 1;
+  });
+  const cats = ['all', ...Object.keys(counts).filter(k => k !== 'all').sort()];
+
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'pill';
+    btn.dataset.cat = cat;
+    btn.setAttribute('aria-pressed', cat === activeCat ? 'true' : 'false');
+    btn.innerHTML = label(cat) + ' <span class="count">' + counts[cat] + '</span>';
+    btn.addEventListener('click', () => { activeCat = cat; render(); });
+    filters.appendChild(btn);
+  });
+
+  // ---- Sort handlers ----
+  segs.forEach(s => s.addEventListener('click', () => {
+    activeSort = s.dataset.sort;
+    render();
+  }));
+
+  function sortCards(list) {
+    const byYear   = (a, b) => (+b.dataset.year || 0) - (+a.dataset.year || 0); // newest first
+    const byIssuer = (a, b) => (a.dataset.issuer || '').localeCompare(b.dataset.issuer || '');
+    const byName   = (a, b) => (a.dataset.title  || '').localeCompare(b.dataset.title  || '');
+    const cmp = activeSort === 'issuer' ? byIssuer
+              : activeSort === 'name'   ? byName
+              : byYear;
+    // stable secondary sort by name so equal keys stay tidy
+    return list.slice().sort((a, b) => cmp(a, b) || byName(a, b));
+  }
+
+  function makeYearHead(yr, n) {
+    const h = document.createElement('div');
+    h.className = 'year-head';
+    h.innerHTML = '<span class="yr">' + yr + '</span>' +
+                  '<span class="n">' + n + (n === 1 ? ' certificate' : ' certificates') + '</span>' +
+                  '<span class="rule"></span>';
+    return h;
+  }
+
+  function render() {
+    // reflect active states
+    filters.querySelectorAll('.pill').forEach(p =>
+      p.setAttribute('aria-pressed', p.dataset.cat === activeCat ? 'true' : 'false'));
+    segs.forEach(s =>
+      s.setAttribute('aria-pressed', s.dataset.sort === activeSort ? 'true' : 'false'));
+
+    // clear any previous year headings
+    grid.querySelectorAll('.year-head').forEach(h => h.remove());
+
+    const ordered = sortCards(cards);
+
+    // filter (decide visibility first, so year headings only count visible cards)
+    let shown = 0;
+    ordered.forEach(c => {
+      const match = activeCat === 'all' || c.dataset.category === activeCat;
+      c.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+
+    // count visible cards per year (for the "N certificates" label)
+    const perYear = {};
+    if (activeSort === 'year') {
+      ordered.forEach(c => {
+        if (c.classList.contains('is-hidden')) return;
+        const yr = c.dataset.year || '—';
+        perYear[yr] = (perYear[yr] || 0) + 1;
+      });
+    }
+
+    // re-append in order; insert a year heading before each new year group
+    let lastYear = null;
+    ordered.forEach(c => {
+      if (activeSort === 'year' && !c.classList.contains('is-hidden')) {
+        const yr = c.dataset.year || '—';
+        if (yr !== lastYear) {
+          grid.appendChild(makeYearHead(yr, perYear[yr]));
+          lastYear = yr;
+        }
+      }
+      grid.appendChild(c);
+    });
+
+    // meta + empty state
+    const catName = activeCat === 'all' ? 'certificate' : label(activeCat) + ' certificate';
+    metaLine.textContent = shown + ' ' + catName + (shown === 1 ? '' : 's');
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  render();
+
+  // ---- Email: reveal the address (and copy it) instead of opening a mail app ----
+  const emailBtn = document.getElementById('emailBtn');
+  const emailReveal = document.getElementById('emailReveal');
+  if (emailBtn && emailReveal) {
+    emailBtn.addEventListener('click', () => {
+      const addr = emailBtn.dataset.email;
+      emailReveal.innerHTML = '<b>' + addr + '</b>';
+      emailReveal.hidden = false;
+      // best-effort copy to clipboard with a small confirmation
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(addr).then(() => {
+          emailReveal.innerHTML = '<b>' + addr + '</b><span class="copied">Copied ✓</span>';
+        }).catch(() => {});
+      }
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
